@@ -1,10 +1,11 @@
 module NamedConf
   class Zone
 
-    attr_accessor :records, :ttl, :serial, :refresh, :retry, :expire, :ns1, :ns2, :hostmaster
+    attr_accessor :records, :ttl, :serial, :refresh, :retry, :expire, :ns1, :ns2, :hostmaster, :name
 
-    def initialize(options = {})
-      @records    = [Record.new(:a, options)]
+    def initialize(name, address)
+      @name       = name
+      @records    = [Record.new(:a, { :name => nil, :address => address })]
       @ttl        = '2H'
       @serial     = Time.now.to_i
       @refresh    = '8H'

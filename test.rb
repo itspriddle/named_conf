@@ -4,7 +4,7 @@ require 'named_conf'
 
 conf = NamedConf.configure do
 
-  zone :name => 'example.com', :address => '1.1.1.1' do |z|
+  zone 'example.com', '1.1.1.1' do |z|
     z.ttl     = "2h"
     z.expire  = "4W"
     z.retry   = "2H"

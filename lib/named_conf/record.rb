@@ -9,9 +9,9 @@ module NamedConf
     def to_s
       case @type
       when :a, :cname
-        template % [@options[:name], @type.to_s.upcase, @options[:address]]
+        "%s\t\t\t%s\t\t%s" % [@options[:name], @type.to_s.upcase, @options[:address]]
       when :mx
-        template % [@options[:priority], @type.to_s.upcase, @options[:address]]
+        "\t\t\t\t%s\t\t%s\t%s" % [@type.to_s.upcase, @options[:priority], @options[:address]]
       end
     end
 

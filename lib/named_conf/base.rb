@@ -5,8 +5,8 @@ module NamedConf
       @zones = []
     end
 
-    def zone(options = {}, &block)
-      zone = Zone.new(options)
+    def zone(name, address, &block)
+      zone = Zone.new(name, address)
       zone.instance_eval(&block)
       @zones << zone
       zone
