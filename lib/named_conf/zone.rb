@@ -1,7 +1,7 @@
 module NamedConf
   class Zone
 
-    attr_accessor :records
+    attr_accessor :records, :ttl, :serial, :refresh, :retry, :expire, :ns1, :ns2, :hostmaster
 
     def initialize(options = {})
       @records    = [Record.new(:a, options)]
@@ -23,13 +23,6 @@ module NamedConf
 
     def to_s
       template << @records.map(&:to_s).join("\n")
-    end
-
-    [:ttl, :serial, :refresh, :retry, :expire, :ns1, :ns2, :hostmaster].each do |meth|
-      define_method(meth) do |*args|
-        instance_variable_set("@#{meth}", args.first) if args && args.count == 1
-        instance_variable_get("@#{meth}")
-      end
     end
 
     def template
